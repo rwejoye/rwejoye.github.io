@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Richmond Wejoye | Data Portfolio</title>
+
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #fdfcfb, #f5e9d4); /* nice warm gradient */
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section id="hero" class="relative flex flex-col md:flex-row items-center justify-between p-10 min-h-screen pt-16">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out">
+    <div class="flex items-center justify-between p-0.5 md:p-1 max-w-6xl mx-auto">
+      <div class="md:hidden">
+        <button id="menu-btn" class="focus:outline-none">
+          <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <div id="menu"
+        class="hidden absolute top-full left-0 w-full bg-white md:static md:flex md:space-x-4 md:bg-transparent md:w-auto flex-col md:flex-row md:items-center text-center">
+        <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">About Me</a>
+        <a href="#projects" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">Projects</a>
+        <a href="#contact" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">Contact Me</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="md:w-1/2 space-y-6 mt-19 md:mt-19">
+    <h1 class="text-5xl font-bold text-black">Richmond Wejoye</h1>
+    <h2 class="text-2xl text-gray-700">Data Analyst | Data Scientist</h2>
+    <p class="text-lg max-w-xl text-yellow-700 font-semibold">
+      Building Insight-Driven Solutions
+    </p>
+  </div>
+
+  <div class="md:w-1/3 mt-10 md:mt-0">
+    <img 
+      src="images/wejoye on suit.jpg" 
+      alt="Richmond Wejoye" 
+      class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg border-4 border-white"
+    />
+  </div>
+</section>
+
+<script>
+  // Hamburger Menu Toggle Script
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  // Auto-close menu on link click (for mobile)
+  document.querySelectorAll('#menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 768) {
+        menu.classList.add('hidden');
+      }
+    });
+  });
+
+  // New JavaScript for scroll effect
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+    const heroSection = document.getElementById('hero');
+
+    // Get the height of the hero section
+    const heroHeight = heroSection.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      // Check if the user has scrolled past the hero section
+      if (window.scrollY > heroHeight - 80) {
+        navbar.classList.add('scrolled-nav');
+      } else {
+        navbar.classList.remove('scrolled-nav');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* This CSS class will be added by JavaScript on scroll */
+  .scrolled-nav {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+</style>
+
+<!-- About Section -->
+<section id = "about" class="bg-white text-gray-800 py-16 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">Who I am</h2>
+    <p class="text-lg leading-relaxed">
+      I’m passionate about uncovering insights from data to drive meaningful business decisions. Whether it's in healthcare, aviation, or fintech, I use data to tell compelling stories that lead to action. On the side, I also apply predictive techniques to anticipate trends and support smarter decisions.
+    </p>
+    <!-- Social Links -->
+    <div class="mt-8">
+      <p class="text-lg font-medium mb-4">Find me on</p>
+      <div class="flex justify-center space-x-6">
+        <a href="https://www.linkedin.com/in/richmond-wejoye-89288b211/" target="_blank" class="hover:opacity-70 transition">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="w-8 h-8">
+        </a>
+        <a href="https://github.com/rwejoye" target="_blank" class="hover:opacity-70 transition">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="w-8 h-8">
+        </a>
+        <a href="https://www.hackerrank.com/profile/Richmondwejoye" target="_blank" class="hover:opacity-70 transition">
+          <img src="images/hackerrank.png" alt="HackerRank" class="w-8 h-8">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Section -->
+
+<section id="projects" style="padding: 4rem 1.5rem; background: #f9fafb; max-width: 1200px; margin: auto;">
+  <h2 style="text-align:center; font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Featured Work</h2>
+  <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+    <button id="tab-data" class="tab-btn active" style="padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 600; border:none; cursor:pointer; background:#fbbf24; color:white;">
+      Data Analytics
+    </button>
+    <button id="tab-ml" class="tab-btn" style="padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 600; border:none; cursor:pointer; background:white; color:#374151; box-shadow: 0 0 6px rgba(0,0,0,0.1);">
+      Machine Learning & AI
+    </button>
+  </div>
+  <div id="projects-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+    </div>
+</section>
+<script>
+  const dataAnalyticsProjects = [
+    {
+      title: 'Airline Performance Analysis',
+      description: 'SQL and Tableau analysis of airline financials and KPIs across global regions.',
+      tools: 'SQL, Tableau, Excel',
+      link: 'https://github.com/rwejoye/airline-performance-analysis',
+    },
+    {
+      title: '8 Week SQL Challenge (Ongoing)',
+      description: 'A hands-on exploration of real-world business case studies created by Danny Ma. Covers joins, window functions, regex, and advanced SQL logic.',
+      tools: 'SQL',
+      link: 'https://github.com/rwejoye/8weeksql',
+    },
+  ];
+
+  const machineLearningProjects = [
+    {
+      title: 'Life Expectancy Prediction',
+      description: 'Regression modeling using socioeconomic and health indicators to predict life expectancy.',
+      tools: 'Python, Regression models',
+      link: 'https://github.com/rwejoye/life-expectancy-predictor',
+    },
+    {
+      title: 'Energy and Climate Variables Analysis',
+      description: 'Time-series and regression analysis on climate impact on energy consumption in coastal regions.',
+      tools: 'Python, Time-Series, Regression models',
+      link: 'https://github.com/rwejoye/climate-energy-analysis',
+    },
+  ];
+
+  const projectsContainer = document.getElementById('projects-container');
+  const tabData = document.getElementById('tab-data');
+  const tabML = document.getElementById('tab-ml');
+
+  function createProjectCard(project) {
+    // FIX: The entire card is now an anchor tag (<a>)
+    const cardLink = document.createElement('a');
+    cardLink.href = project.link;
+    cardLink.target = '_blank';
+    cardLink.rel = 'noopener noreferrer';
+    cardLink.style.background = 'white';
+    cardLink.style.borderRadius = '1rem';
+    cardLink.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    cardLink.style.display = 'flex';
+    cardLink.style.flexDirection = 'column';
+    cardLink.style.overflow = 'hidden';
+    cardLink.style.transition = 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out';
+    cardLink.style.cursor = 'pointer';
+
+    // Add a hover effect to give a visual cue that the card is clickable
+    cardLink.addEventListener('mouseenter', () => {
+      cardLink.style.transform = 'translateY(-5px)';
+      cardLink.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+    });
+    cardLink.addEventListener('mouseleave', () => {
+      cardLink.style.transform = 'translateY(0)';
+      cardLink.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    });
+
+    const getImageSrc = (title) => {
+      switch (title) {
+        case 'Airline Performance Analysis':
+          return 'images/airline_pics.jpg';
+        case '8 Week SQL Challenge (Ongoing)':
+          return 'images/eightweeksql.png';
+        case 'Life Expectancy Prediction':
+          return 'images/lifecycle.jpg';
+        case 'Energy and Climate Variables Analysis':
+          return 'images/energy_climate.jpg';
+        default:
+          return null;
+      }
+    };
+
+    const imageSrc = getImageSrc(project.title);
+
+    if (imageSrc) {
+      const image = document.createElement('img');
+      image.src = imageSrc;
+      image.alt = project.title;
+      image.style.width = '100%';
+      image.style.height = '240px';
+      image.style.objectFit = 'cover';
+      image.style.borderTopLeftRadius = '1rem';
+      image.style.borderTopRightRadius = '1rem';
+      cardLink.appendChild(image);
+    } else {
+      const imgPlaceholder = document.createElement('div');
+      imgPlaceholder.style.background = '#e5e7eb';
+      imgPlaceholder.style.height = '240px';
+      imgPlaceholder.style.display = 'flex';
+      imgPlaceholder.style.alignItems = 'center';
+      imgPlaceholder.style.justifyContent = 'center';
+      imgPlaceholder.style.color = '#9ca3af';
+      imgPlaceholder.style.fontSize = '1rem';
+      imgPlaceholder.textContent = 'Image Placeholder';
+      cardLink.appendChild(imgPlaceholder);
+    }
+
+    // Content container
+    const content = document.createElement('div');
+    content.style.padding = '1rem';
+    content.style.display = 'flex';
+    content.style.flexDirection = 'column';
+    content.style.flexGrow = '1';
+
+    // Title
+    const title = document.createElement('h3');
+    title.textContent = project.title;
+    title.style.fontSize = '1.25rem';
+    title.style.fontWeight = '600';
+    title.style.marginBottom = '0.5rem';
+    content.appendChild(title);
+
+    // Description
+    const desc = document.createElement('p');
+    desc.textContent = project.description;
+    desc.style.flexGrow = '1';
+    desc.style.color = '#4b5563';
+    content.appendChild(desc);
+
+    // Tools
+    const tools = document.createElement('p');
+    tools.textContent = `Tools: ${project.tools}`;
+    tools.style.color = '#6b7280';
+    tools.style.marginTop = '1rem';
+    tools.style.fontSize = '0.875rem';
+    content.appendChild(tools);
+
+    // All content is appended to the cardLink, making the entire card clickable
+    cardLink.appendChild(content);
+    return cardLink;
+  }
+
+  function showProjects(projects) {
+    projectsContainer.innerHTML = '';
+    projects.forEach(project => {
+      projectsContainer.appendChild(createProjectCard(project));
+    });
+  }
+
+  // Initial load: show Data Analytics
+  showProjects(dataAnalyticsProjects);
+
+  // Tab button event listeners
+  tabData.addEventListener('click', () => {
+    showProjects(dataAnalyticsProjects);
+    tabData.style.background = '#fbbf24';
+    tabData.style.color = 'white';
+    tabML.style.background = 'white';
+    tabML.style.color = '#374151';
+    tabML.style.boxShadow = '0 0 6px rgba(0,0,0,0.1)';
+    tabData.style.boxShadow = 'none';
+  });
+  tabML.addEventListener('click', () => {
+    showProjects(machineLearningProjects);
+    tabML.style.background = '#fbbf24';
+    tabML.style.color = 'white';
+    tabData.style.background = 'white';
+    tabData.style.color = '#374151';
+    tabData.style.boxShadow = '0 0 6px rgba(0,0,0,0.1)';
+    tabML.style.boxShadow = 'none';
+  });
+</script>
+
+<!-- Contact Section -->
+<section class="linear-gradient(to bottom right, #fdfcfb, #f5e9d4) text-gray-800 py-16 px-6" id="contact">
+  <div class="max-w-2xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8 text-center">Get in Touch</h2>
+    <form action="https://formspree.io/f/movlkndw" method="POST" class="space-y-4">
+      <!-- Name and Email -->
+      <div class="flex flex-col md:flex-row gap-6">
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Name" 
+          class="w-full md:w-1/2 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email" 
+          class="w-full md:w-1/2 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <!-- Subject -->
+      <input 
+        type="text" 
+        name="subject" 
+        placeholder="Subject" 
+        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <!-- Message -->
+      <textarea 
+        name="message" 
+        rows="6" 
+        placeholder="Enter your message..." 
+        class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      ></textarea>
+      <!-- Submit -->
+      <div class="text-center">
+        <button 
+          type="submit" 
+          class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition"
+        >
+          Send Message
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+</body>
+</html>
