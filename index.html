@@ -228,13 +228,13 @@
     {
       title: 'Life Expectancy Prediction',
       description: 'Regression modeling using socioeconomic and health indicators to predict life expectancy.',
-      tools: 'Python, Regression models',
+      tools: 'Python, Pandas, Plotly, Scikit-learn',
       link: 'https://github.com/rwejoye/life-expectancy-predictor',
     },
     {
       title: 'Energy and Climate Variables Analysis',
       description: 'Time-series and regression analysis on climate impact on energy consumption in coastal regions.',
-      tools: 'Python, Time-Series, Regression models',
+      tools: 'Pandas, XGBoost, Time Series Forecasting',
       link: 'https://github.com/rwejoye/climate-energy-analysis',
     },
   ];
@@ -244,109 +244,121 @@
   const tabML = document.getElementById('tab-ml');
 
   function createProjectCard(project) {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.style.position = 'relative';
-    card.style.background = 'white';
-    card.style.borderRadius = '1rem';
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  card.style.position = 'relative';
+  card.style.background = 'white';
+  card.style.borderRadius = '1rem';
+  card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+  card.style.overflow = 'hidden';
+  card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+
+  card.addEventListener('mouseenter', () => {
+    card.style.transform = 'translateY(-5px)';
+    card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'translateY(0)';
     card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-    card.style.overflow = 'hidden';
-    card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+  });
 
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-5px)';
-      card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0)';
-      card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-    });
-
-    const getImageSrc = (title) => {
-      switch (title) {
-        case 'Airline Performance Analysis': return 'images/airline_pics.jpg';
-        case '8 Week SQL Challenge (Ongoing)': return 'images/eightweeksql.png';
-        case 'Life Expectancy Prediction': return 'images/lifecycle.jpg';
-        case 'Energy and Climate Variables Analysis': return 'images/energy_climate.jpg';
-        default: return null;
-      }
-    };
-
-    const imageSrc = getImageSrc(project.title);
-    if (imageSrc) {
-      const img = document.createElement('img');
-      img.src = imageSrc;
-      img.alt = project.title;
-      img.style.width = '100%';
-      img.style.height = '240px';
-      img.style.objectFit = 'cover';
-      card.appendChild(img);
+  const getImageSrc = (title) => {
+    switch (title) {
+      case 'Airline Performance Analysis': return 'images/airline_pics.jpg';
+      case '8 Week SQL Challenge (Ongoing)': return 'images/eightweeksql.png';
+      case 'Life Expectancy Prediction': return 'images/lifecycle.jpg';
+      case 'Energy and Climate Variables Analysis': return 'images/energy_climate.jpg';
+      default: return null;
     }
+  };
 
-    const content = document.createElement('div');
-    content.style.padding = '1rem';
-
-    const title = document.createElement('h3');
-    title.textContent = project.title;
-    title.style.fontSize = '1.25rem';
-    title.style.fontWeight = '600';
-    title.style.marginBottom = '0.5rem';
-
-    const desc = document.createElement('p');
-    desc.textContent = project.description;
-    desc.style.color = '#4b5563';
-
-    const tools = document.createElement('p');
-    tools.textContent = `Tools: ${project.tools}`;
-    tools.style.color = '#6b7280';
-    tools.style.fontSize = '0.875rem';
-    tools.style.marginTop = '1rem';
-
-    content.appendChild(title);
-    content.appendChild(desc);
-    content.appendChild(tools);
-
-    const viewBtn = document.createElement('a');
-    viewBtn.href = project.link;
-    viewBtn.target = '_blank';
-    viewBtn.rel = 'noopener noreferrer';
-    viewBtn.textContent = 'View';
-    viewBtn.style.position = 'absolute';
-    viewBtn.style.bottom = '1rem';
-    viewBtn.style.right = '1rem';
-    viewBtn.style.padding = '0.4rem 1rem';
-    viewBtn.style.background = '#000';
-    viewBtn.style.color = '#fff';
-    viewBtn.style.fontSize = '0.875rem';
-    viewBtn.style.borderRadius = '0.5rem';
-    viewBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-    viewBtn.style.transition = 'opacity 0.3s';
-    viewBtn.style.opacity = '0';
-    viewBtn.style.zIndex = '2';
-
-    card.appendChild(content);
-    card.appendChild(viewBtn);
-
-    // Show view button on hover (desktop), always visible on mobile
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    function updateButtonVisibility() {
-      if (mediaQuery.matches) {
-        viewBtn.style.opacity = '1';
-      } else {
-        card.addEventListener('mouseenter', () => {
-          viewBtn.style.opacity = '1';
-        });
-        card.addEventListener('mouseleave', () => {
-          viewBtn.style.opacity = '0';
-        });
-      }
-    }
-    updateButtonVisibility();
-    mediaQuery.addEventListener('change', updateButtonVisibility);
-
-    return card;
+  const imageSrc = getImageSrc(project.title);
+  if (imageSrc) {
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = project.title;
+    img.style.width = '100%';
+    img.style.height = '240px';
+    img.style.objectFit = 'cover';
+    card.appendChild(img);
   }
 
+  const content = document.createElement('div');
+  content.style.padding = '1rem';
+  content.style.paddingBottom = '0'; // Adjusted padding
+
+  const title = document.createElement('h3');
+  title.textContent = project.title;
+  title.style.fontSize = '1.25rem';
+  title.style.fontWeight = '600';
+  title.style.marginBottom = '0.5rem';
+
+  const desc = document.createElement('p');
+  desc.textContent = project.description;
+  desc.style.color = '#4b5563';
+  desc.style.marginBottom = '1rem'; // Added margin for spacing
+
+  content.appendChild(title);
+  content.appendChild(desc);
+  
+  // --- New Footer Container ---
+  const footer = document.createElement('div');
+  footer.style.display = 'flex';
+  footer.style.justifyContent = 'space-between';
+  footer.style.alignItems = 'center';
+  footer.style.padding = '0 1rem 1rem 1rem'; // Align with content padding
+  
+  const tools = document.createElement('p');
+  tools.textContent = `Tools: ${project.tools}`;
+  tools.style.color = '#6b7280';
+  tools.style.fontSize = '0.875rem';
+  tools.style.marginTop = '0'; // Removed top margin
+  tools.style.marginBottom = '0'; // Removed bottom margin
+  
+  footer.appendChild(tools);
+
+  const viewBtn = document.createElement('a');
+  viewBtn.href = project.link;
+  viewBtn.target = '_blank';
+  viewBtn.rel = 'noopener noreferrer';
+  viewBtn.textContent = 'View';
+  viewBtn.style.padding = '0.4rem 1rem';
+  viewBtn.style.background = '#000';
+  viewBtn.style.color = '#fff';
+  viewBtn.style.fontSize = '0.875rem';
+  viewBtn.style.borderRadius = '0.5rem';
+  viewBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+  viewBtn.style.transition = 'opacity 0.3s';
+  viewBtn.style.opacity = '0';
+  viewBtn.style.zIndex = '2';
+  
+  // Removed absolute positioning for the button
+  viewBtn.style.position = 'static'; 
+  
+  footer.appendChild(viewBtn);
+
+  card.appendChild(content);
+  card.appendChild(footer); // Append the new footer
+
+  // Show view button on hover (desktop), always visible on mobile
+  const mediaQuery = window.matchMedia('(max-width: 768px)');
+  function updateButtonVisibility() {
+    if (mediaQuery.matches) {
+      viewBtn.style.opacity = '1';
+    } else {
+      card.addEventListener('mouseenter', () => {
+        viewBtn.style.opacity = '1';
+      });
+      card.addEventListener('mouseleave', () => {
+        viewBtn.style.opacity = '0';
+      });
+    }
+  }
+  updateButtonVisibility();
+  mediaQuery.addEventListener('change', updateButtonVisibility);
+
+  return card;
+}
   function showProjects(projects) {
     projectsContainer.innerHTML = '';
     projects.forEach(project => {
