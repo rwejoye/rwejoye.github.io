@@ -23,29 +23,50 @@
 <!-- ####################### -->
 <!-- Hero Section -->
 <!-- ####################### -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out">
+  <div class="flex items-center justify-between py-0 px-4 md:py-1 max-w-6xl mx-auto w-full">
 
-<section id="hero" class="relative flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 p-10 min-h-screen pt-16">
+    <div class="flex items-center space-x-4">
 
-  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out">
-    <div class="flex items-center justify-between p-0.5 md:p-1 max-w-6xl mx-auto">
       <div class="md:hidden">
-        <button id="menu-btn" class="focus:outline-none">
-          <svg class="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
+        <button id="menu-btn" class="relative focus:outline-none w-8 h-8">
+          <svg id="menu-icon" class="absolute top-0 left-0 w-8 h-8 text-gray-800 transition-all duration-300 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="close-icon" class="absolute top-0 left-0 w-8 h-8 text-gray-800 opacity-0 transform rotate-90 transition-all duration-300 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
+      <a href="#hero" id="nav-name"
+        class="hidden px-4 py-2 text-gray-800 border border-transparent rounded-full transition-all duration-300 ease-in-out font-bold nav-link">
+        Richmond Wejoye
+      </a>
+    </div>
+
+    <div class="flex items-center space-x-4">
       <div id="menu"
-        class="hidden absolute top-full left-0 w-full bg-white md:static md:flex md:space-x-4 md:bg-transparent md:w-auto flex-col md:flex-row md:items-center text-center">
-        <a href="#about" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">About Me</a>
-        <a href="#projects" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">Projects</a>
-        <a href="#contact" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 active:bg-gray-300 transition duration-150 md:rounded-full">Contact Me</a>
+        class="hidden absolute top-full right-0 w-full bg-white md:static md:flex md:space-x-4 md:bg-transparent md:w-auto flex-col md:flex-row md:items-center text-center">
+        <a href="#about"
+          class="block px-4 py-2 text-gray-800 border border-transparent rounded-full transition-all duration-300 ease-in-out nav-link">
+          About Me
+        </a>
+        <a href="#projects"
+          class="block px-4 py-2 text-gray-800 border border-transparent rounded-full transition-all duration-300 ease-in-out nav-link">
+          Projects
+        </a>
+        <a href="#contact"
+          class="block px-4 py-2 text-gray-800 border border-transparent rounded-full transition-all duration-300 ease-in-out nav-link">
+          Contact Me
+        </a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
+<section id="hero"
+  class="relative flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 p-10 min-h-screen pt-16">
   <div class="md:w-1/2 space-y-6 mt-10 md:mt-10">
     <h1 class="text-5xl font-bold text-black">Richmond Wejoye</h1>
     <h2 class="text-2xl text-gray-700">Data Analyst | Data Scientist</h2>
@@ -55,58 +76,86 @@
   </div>
 
   <div class="md:w-1/3 mt-6 md:mt-0">
-    <img 
-      src="images/wejoye on suit.jpg" 
-      alt="Richmond Wejoye" 
-      class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg border-4 border-white"
-    />
+    <img src="images/wejoye on suit.jpg" alt="Richmond Wejoye"
+      class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg border-4 border-white" />
   </div>
 </section>
 
 <script>
-  // Hamburger Menu Toggle Script
   const menuBtn = document.getElementById('menu-btn');
   const menu = document.getElementById('menu');
+  const navName = document.getElementById('nav-name');
+  const navbar = document.getElementById('navbar');
 
+  // Hamburger toggle
   menuBtn.addEventListener('click', () => {
     menu.classList.toggle('hidden');
+    menuBtn.classList.toggle('is-open');
+    navbar.classList.toggle('menu-open'); // Added to fix the gap
   });
 
-  // Auto-close menu on link click (for mobile)
+  // Close menu when link is clicked (mobile)
   document.querySelectorAll('#menu a').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth < 768) {
         menu.classList.add('hidden');
+        menuBtn.classList.remove('is-open');
+        navbar.classList.remove('menu-open'); // Reset navbar background
       }
     });
   });
 
-  // New JavaScript for scroll effect
+  // Show name on scroll
   document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('navbar');
-    const heroSection = document.getElementById('hero');
-
-    // Get the height of the hero section
-    const heroHeight = heroSection.offsetHeight;
-
     window.addEventListener('scroll', () => {
-      // Check if the user has scrolled past the hero section
-      if (window.scrollY > heroHeight - 80) {
+      if (window.scrollY > 20) {
         navbar.classList.add('scrolled-nav');
+        navName.classList.remove('hidden');
       } else {
         navbar.classList.remove('scrolled-nav');
+        navName.classList.add('hidden');
       }
     });
   });
 </script>
 
 <style>
-  /* This CSS class will be added by JavaScript on scroll */
   .scrolled-nav {
     background-color: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Show navbar fill on mobile menu open */
+  @media (max-width: 767px) {
+    #navbar.menu-open {
+      background-color: white;
+    }
+  }
+
+  #menu-btn.is-open #menu-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  #menu-btn.is-open #close-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  #nav-name {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .nav-link {
+    transition: all 0.3s ease-in-out;
+    color: #374151;
+  }
+
+  .nav-link:hover {
+    color: #ebc259;
+    border-color: #ebc259;
   }
 </style>
 
