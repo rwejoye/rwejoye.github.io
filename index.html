@@ -106,8 +106,9 @@
                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   }
 </style>
-
+<!-- ################################################################# -->
 <!-- About Section -->
+<!-- ################################################################# -->
 <section id = "about" class="bg-white text-gray-800 py-16 px-6">
   <div class="max-w-4xl mx-auto text-center">
     <h2 class="text-3xl font-bold mb-4">Who I am</h2>
@@ -131,9 +132,9 @@
     </div>
   </div>
 </section>
-
+<!-- ################################################################ -->
 <!-- Project Section -->
-
+<!-- ################################################################ -->
 <section id="projects" style="padding: 4rem 1.5rem; background: #f9fafb; max-width: 1200px; margin: auto;">
   <h2 style="text-align:center; font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Featured Work</h2>
   <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
@@ -144,9 +145,9 @@
       Machine Learning & AI
     </button>
   </div>
-  <div id="projects-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-    </div>
+  <div id="projects-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"></div>
 </section>
+
 <script>
   const dataAnalyticsProjects = [
     {
@@ -183,103 +184,107 @@
   const tabML = document.getElementById('tab-ml');
 
   function createProjectCard(project) {
-    // FIX: The entire card is now an anchor tag (<a>)
-    const cardLink = document.createElement('a');
-    cardLink.href = project.link;
-    cardLink.target = '_blank';
-    cardLink.rel = 'noopener noreferrer';
-    cardLink.style.background = 'white';
-    cardLink.style.borderRadius = '1rem';
-    cardLink.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-    cardLink.style.display = 'flex';
-    cardLink.style.flexDirection = 'column';
-    cardLink.style.overflow = 'hidden';
-    cardLink.style.transition = 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out';
-    cardLink.style.cursor = 'pointer';
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.style.position = 'relative';
+    card.style.background = 'white';
+    card.style.borderRadius = '1rem';
+    card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    card.style.overflow = 'hidden';
+    card.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
 
-    // Add a hover effect to give a visual cue that the card is clickable
-    cardLink.addEventListener('mouseenter', () => {
-      cardLink.style.transform = 'translateY(-5px)';
-      cardLink.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-5px)';
+      card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
     });
-    cardLink.addEventListener('mouseleave', () => {
-      cardLink.style.transform = 'translateY(0)';
-      cardLink.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0)';
+      card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
     });
 
     const getImageSrc = (title) => {
       switch (title) {
-        case 'Airline Performance Analysis':
-          return 'images/airline_pics.jpg';
-        case '8 Week SQL Challenge (Ongoing)':
-          return 'images/eightweeksql.png';
-        case 'Life Expectancy Prediction':
-          return 'images/lifecycle.jpg';
-        case 'Energy and Climate Variables Analysis':
-          return 'images/energy_climate.jpg';
-        default:
-          return null;
+        case 'Airline Performance Analysis': return 'images/airline_pics.jpg';
+        case '8 Week SQL Challenge (Ongoing)': return 'images/eightweeksql.png';
+        case 'Life Expectancy Prediction': return 'images/lifecycle.jpg';
+        case 'Energy and Climate Variables Analysis': return 'images/energy_climate.jpg';
+        default: return null;
       }
     };
 
     const imageSrc = getImageSrc(project.title);
-
     if (imageSrc) {
-      const image = document.createElement('img');
-      image.src = imageSrc;
-      image.alt = project.title;
-      image.style.width = '100%';
-      image.style.height = '240px';
-      image.style.objectFit = 'cover';
-      image.style.borderTopLeftRadius = '1rem';
-      image.style.borderTopRightRadius = '1rem';
-      cardLink.appendChild(image);
-    } else {
-      const imgPlaceholder = document.createElement('div');
-      imgPlaceholder.style.background = '#e5e7eb';
-      imgPlaceholder.style.height = '240px';
-      imgPlaceholder.style.display = 'flex';
-      imgPlaceholder.style.alignItems = 'center';
-      imgPlaceholder.style.justifyContent = 'center';
-      imgPlaceholder.style.color = '#9ca3af';
-      imgPlaceholder.style.fontSize = '1rem';
-      imgPlaceholder.textContent = 'Image Placeholder';
-      cardLink.appendChild(imgPlaceholder);
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = project.title;
+      img.style.width = '100%';
+      img.style.height = '240px';
+      img.style.objectFit = 'cover';
+      card.appendChild(img);
     }
 
-    // Content container
     const content = document.createElement('div');
     content.style.padding = '1rem';
-    content.style.display = 'flex';
-    content.style.flexDirection = 'column';
-    content.style.flexGrow = '1';
 
-    // Title
     const title = document.createElement('h3');
     title.textContent = project.title;
     title.style.fontSize = '1.25rem';
     title.style.fontWeight = '600';
     title.style.marginBottom = '0.5rem';
-    content.appendChild(title);
 
-    // Description
     const desc = document.createElement('p');
     desc.textContent = project.description;
-    desc.style.flexGrow = '1';
     desc.style.color = '#4b5563';
-    content.appendChild(desc);
 
-    // Tools
     const tools = document.createElement('p');
     tools.textContent = `Tools: ${project.tools}`;
     tools.style.color = '#6b7280';
-    tools.style.marginTop = '1rem';
     tools.style.fontSize = '0.875rem';
+    tools.style.marginTop = '1rem';
+
+    content.appendChild(title);
+    content.appendChild(desc);
     content.appendChild(tools);
 
-    // All content is appended to the cardLink, making the entire card clickable
-    cardLink.appendChild(content);
-    return cardLink;
+    const viewBtn = document.createElement('a');
+    viewBtn.href = project.link;
+    viewBtn.target = '_blank';
+    viewBtn.rel = 'noopener noreferrer';
+    viewBtn.textContent = 'View';
+    viewBtn.style.position = 'absolute';
+    viewBtn.style.bottom = '1rem';
+    viewBtn.style.right = '1rem';
+    viewBtn.style.padding = '0.4rem 1rem';
+    viewBtn.style.background = '#000';
+    viewBtn.style.color = '#fff';
+    viewBtn.style.fontSize = '0.875rem';
+    viewBtn.style.borderRadius = '0.5rem';
+    viewBtn.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    viewBtn.style.transition = 'opacity 0.3s';
+    viewBtn.style.opacity = '0';
+    viewBtn.style.zIndex = '2';
+
+    card.appendChild(content);
+    card.appendChild(viewBtn);
+
+    // Show view button on hover (desktop), always visible on mobile
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    function updateButtonVisibility() {
+      if (mediaQuery.matches) {
+        viewBtn.style.opacity = '1';
+      } else {
+        card.addEventListener('mouseenter', () => {
+          viewBtn.style.opacity = '1';
+        });
+        card.addEventListener('mouseleave', () => {
+          viewBtn.style.opacity = '0';
+        });
+      }
+    }
+    updateButtonVisibility();
+    mediaQuery.addEventListener('change', updateButtonVisibility);
+
+    return card;
   }
 
   function showProjects(projects) {
@@ -289,10 +294,8 @@
     });
   }
 
-  // Initial load: show Data Analytics
   showProjects(dataAnalyticsProjects);
 
-  // Tab button event listeners
   tabData.addEventListener('click', () => {
     showProjects(dataAnalyticsProjects);
     tabData.style.background = '#fbbf24';
@@ -302,6 +305,7 @@
     tabML.style.boxShadow = '0 0 6px rgba(0,0,0,0.1)';
     tabData.style.boxShadow = 'none';
   });
+
   tabML.addEventListener('click', () => {
     showProjects(machineLearningProjects);
     tabML.style.background = '#fbbf24';
@@ -312,8 +316,9 @@
     tabML.style.boxShadow = 'none';
   });
 </script>
-
+<!-- ################################################################################# -->
 <!-- Contact Section -->
+<!-- ################################################################################# -->
 <section class="linear-gradient(to bottom right, #fdfcfb, #f5e9d4) text-gray-800 py-16 px-6" id="contact">
   <div class="max-w-2xl mx-auto">
     <h2 class="text-3xl font-bold mb-8 text-center">Get in Touch</h2>
