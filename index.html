@@ -205,9 +205,16 @@
       Machine Learning & AI
     </button>
   </div>
-  <div id="projects-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"></div>
+  <div id="projects-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;"></div>
+  <!-- <div id="projects-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;"></div> -->
 </section>
-
+<style>
+  @media (max-width: 640px) {
+    #projects-container {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
 <script>
   const dataAnalyticsProjects = [
     {
